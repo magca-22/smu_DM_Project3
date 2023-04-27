@@ -1,0 +1,7 @@
+library(e1071)
+
+nbModel <- naiveBayes(bad ~ ., data = cases_train)
+nbPredictions <- predict(nbModel, cases_test)
+nbAccuracy <- sum(nbPredictions == cases_test$bad) / nrow(cases_test)
+
+nbcm <- confusionMatrix(nbPredictions, cases_test$bad)
